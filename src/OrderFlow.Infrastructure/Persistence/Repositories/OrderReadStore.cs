@@ -21,7 +21,9 @@ public sealed class OrderReadStore(OrderDbContext db) : IOrderReadStore
         var query = db.Orders.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(status) && Enum.TryParse<OrderStatus>(status, true, out var parsed))
+        {
             query = query.Where(o => o.Status == parsed);
+        }
 
         var total = await query.CountAsync(ct);
 
