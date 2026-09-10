@@ -1,5 +1,6 @@
 ﻿namespace OrderFlow.Application;
 
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using OrderFlow.Application.Common.Events;
 using OrderFlow.Application.Orders;
@@ -13,7 +14,8 @@ public static class DependencyInjection
 
         services.AddScoped<IOrderService, OrderService>();
 
-        //services.AddValidatorsFromAssembly(assembly);
+        // Validators: FluentValidation scans for AbstractValidator<T> implementations.
+        services.AddValidatorsFromAssembly(assembly);
 
         services.AddScoped<IDomainEventHandler, OrderPlacedLogHandler>();
 
