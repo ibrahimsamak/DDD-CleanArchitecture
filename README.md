@@ -183,12 +183,15 @@ An environment variable works just as well:
 export ConnectionStrings__OrderDb="Server=localhost,1433;Database=OrderFlow;..."
 ```
 
-If you need a database to talk to, one container is enough:
+If you need a database to talk to, `docker-compose.yml` brings one up on
+`localhost,1433` with the password the default connection string expects:
 
 ```bash
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<your-password>" \
-  -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+docker compose up -d
 ```
+
+It keeps its data in a named volume, so restarting the container does not throw
+your orders away. `docker compose down -v` wipes it when you want a clean slate.
 
 ### 3. Create the schema
 
