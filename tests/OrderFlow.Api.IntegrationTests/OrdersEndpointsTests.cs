@@ -8,7 +8,8 @@ using OrderFlow.Application.Common.Models;
 using OrderFlow.Application.Orders.Dtos;
 using Xunit;
 
-public sealed class OrdersEndpointsTests(OrderApiFactory factory) : IClassFixture<OrderApiFactory>
+[Collection(nameof(OrderApiCollection))]
+public sealed class OrdersEndpointsTests(OrderApiFactory factory)
 {
     private static PlaceOrderRequest Sample() => new(
         "cust-1", "CAD", "1 King St", "Toronto", "M5H 1A1", "CA",

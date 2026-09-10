@@ -12,8 +12,9 @@
       CA2007 — there is no synchronization context to capture in a test host.
       CA1861 — inline arrays in assertions are more readable than hoisted statics.
       CA1515 — xUnit discovers public test classes; it cannot see internal ones.
+      CA1711 — xUnit's own convention names a collection definition "...Collection".
     -->
-    <NoWarn>$(NoWarn);CA1707;CA2007;CA1861;CA1515</NoWarn>
+    <NoWarn>$(NoWarn);CA1707;CA2007;CA1861;CA1515;CA1711</NoWarn>
   </PropertyGroup>
 
 </Project>
