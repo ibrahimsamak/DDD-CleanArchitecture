@@ -229,6 +229,25 @@ dotnet build OrderFlow.slnx
 dotnet test  OrderFlow.slnx
 ```
 
+Four test projects, each proving a different claim:
+
+| Project | What it proves |
+| --- | --- |
+| `OrderFlow.ArchitectureTests` | the dependency rule holds — by reflection over the assemblies, not by assertion in a document |
+| `OrderFlow.Domain.UnitTests` | the aggregate's invariants, with no mocks, containers or DI |
+| `OrderFlow.Application.UnitTests` | the use cases, against substituted ports and a `FakeTimeProvider` |
+| `OrderFlow.Api.IntegrationTests` | the endpoints end to end, against real SQL Server |
+
+The integration tests start SQL Server in a container through Testcontainers,
+so **Docker must be running** for them; the other three projects need nothing.
+To run only those:
+
+```bash
+dotnet test tests/OrderFlow.Domain.UnitTests
+dotnet test tests/OrderFlow.Application.UnitTests
+dotnet test tests/OrderFlow.ArchitectureTests
+```
+
 ---
 
 ## API
